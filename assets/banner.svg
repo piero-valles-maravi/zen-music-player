@@ -44,8 +44,8 @@
 
   <!-- TITLE -->
   <text class="t"   x="330" y="128" font-size="62" font-weight="700" letter-spacing="-1">Zen Music Player</text>
-  <text class="sub" x="332" y="168" font-size="21">Tu biblioteca local y el catálogo de internet, en un solo reproductor.</text>
-  <text class="sub" x="332" y="197" font-size="21" opacity="0.72">Your local library and the whole internet catalog, in one player.</text>
+  <text class="sub" x="332" y="168" font-size="19">Tu biblioteca local y un catálogo en línea, en un reproductor.</text>
+  <text class="sub" x="332" y="196" font-size="19" opacity="0.72">Your local library and an online catalog, in one player.</text>
 
   <!-- FEATURE CHIPS -->
   <g transform="translate(332,224)">
