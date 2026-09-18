@@ -2,9 +2,17 @@
   "name": "zen-music-player",
   "productName": "zen-music-player",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Desktop music player that treats your local folder and the online catalog as one library",
   "main": ".vite/build/main.js",
   "private": true,
+  "homepage": "https://github.com/piero-valles-maravi/zen-music-player#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piero-valles-maravi/zen-music-player.git"
+  },
+  "bugs": {
+    "url": "https://github.com/piero-valles-maravi/zen-music-player/issues"
+  },
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -12,10 +20,18 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
-  "keywords": [],
+  "keywords": [
+    "electron",
+    "music-player",
+    "audio",
+    "local-library",
+    "cover-flow",
+    "deezer",
+    "desktop-app"
+  ],
   "author": {
     "name": "Piero Valles-Maravi",
-    "email": "pvalles@equilibriumbdc.com"
+    "url": "https://github.com/piero-valles-maravi"
   },
   "license": "MIT",
   "devDependencies": {

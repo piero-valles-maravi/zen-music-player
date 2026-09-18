@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zen Music Player</title>
   </head>
+  <!--
+    Zen Music Player — full UI markup. Every screen the app has is in this file;
+    the renderer never creates top-level structure, only fills #track-list,
+    #detail-panel and #queue-list. Order below: top bar (tabs + settings),
+    main (library grid + detail panel, resize handle, player card), mini-bar.
+    Docs: docs/ARCHITECTURE.md
+  -->
   <body>
     <div id="app">
 

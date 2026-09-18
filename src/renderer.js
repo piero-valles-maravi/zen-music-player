@@ -1,3 +1,24 @@
+/**
+ * Zen Music Player — renderer.
+ *
+ * The whole interface, in vanilla JS: no framework, no virtual DOM, no reactive
+ * layer. State lives in the module-level variables below; anything that should
+ * become visible mutates one of them and calls `renderLibrary()`, which clears
+ * `#track-list` and rebuilds it.
+ *
+ * Everything is an index into the flat `tracks` array, which holds two kinds of
+ * entry distinguished by `online`: files found by the folder scan, and catalog
+ * results ingested from Deezer. `path` is the identity key for both — an
+ * absolute path for local files, a synthetic `source:id` for online ones — and
+ * ratings, favorites and the art cache are all keyed by it.
+ *
+ * Sections, in order: state · DOM helpers · lazy art · grouping · tabs ·
+ * library grids · Explore · detail panels · track rows · playback · queue ·
+ * Cover Flow · theme · prefs · context menu · init.
+ *
+ * Docs: ../docs/ARCHITECTURE.md
+ */
+
 import './index.css';
 
 /* ===== STATE ===== */

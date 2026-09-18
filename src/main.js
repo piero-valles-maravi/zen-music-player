@@ -1,3 +1,22 @@
+/**
+ * Zen Music Player — Electron main process.
+ *
+ * Everything that touches the disk, the network or a child process lives here;
+ * the renderer reaches it only through the `window.musicAPI` bridge defined in
+ * preload.js. Four groups of handlers:
+ *
+ *   1. Local library  — folder picker, recursive audio scan, embedded cover art.
+ *   2. Deezer         — metadata only (search, charts, album and artist tracks).
+ *   3. YouTube        — play-time audio URL resolution via yt-dlp (see the note
+ *                       above that section before reusing this code).
+ *   4. App lifecycle  — window creation, activate/quit.
+ *
+ * No handler throws across the bridge: failures collapse to `null` or an empty
+ * collection, and the renderer treats "empty" and "failed" the same way.
+ *
+ * Docs: ../docs/ARCHITECTURE.md · IPC contract: ../docs/IPC-API.md
+ */
+
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -14,6 +33,10 @@ const createWindow = () => {
     minHeight: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      // Needed so one document can load `file://` audio from the user's folder
+      // and remote cover art at the same time. A real relaxation of Electron's
+      // sandbox — acceptable while the window only ever loads our own UI, and
+      // the first thing to revisit before rendering third-party content.
       webSecurity: false,
     },
     backgroundColor: '#f9f9f7',

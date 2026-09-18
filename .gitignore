@@ -90,3 +90,10 @@ typings/
 
 # Electron-Forge
 out/
+
+# yt-dlp binary — provided by the user, never redistributed (see README → Legal and scope)
+bin/yt-dlp
+bin/yt-dlp.exe
+
+# Claude Code local machine settings
+.claude/settings.local.json

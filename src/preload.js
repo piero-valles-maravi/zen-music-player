@@ -1,3 +1,13 @@
+/**
+ * Zen Music Player — preload bridge.
+ *
+ * The renderer's entire outward surface: ten async methods, each a thin wrapper
+ * over one `ipcMain.handle` channel in main.js. Nothing else is exposed, so the
+ * renderer never sees `require`, `process` or the filesystem.
+ *
+ * Arguments and return shapes: ../docs/IPC-API.md
+ */
+
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('musicAPI', {

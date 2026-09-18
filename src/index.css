@@ -1,3 +1,12 @@
+/* Zen Music Player — stylesheet.
+   One file, organised by component. All colour goes through CSS custom
+   properties: each theme is a single selector defining the same variable set,
+   and `applyTheme()` only swaps `data-theme` on <html> — nothing in the JS
+   knows a colour. Adding a theme means one selector here plus one .theme-dot
+   in index.html. Two variables are set from JS instead of by theme:
+   --grid-size (grid size slider) and --detail-thumb-size (thumbnail slider).
+   Docs: ../docs/ARCHITECTURE.md */
+
 /* ===== THEMES ===== */
 :root,[data-theme="white"]{--bg:#f5f5f3;--surface:#ffffff;--surface2:#f0f0ee;--border:#e8e8e6;--text1:#1a1a1a;--text2:#888;--text3:#bbb;--accent:#1a1a1a;--accent-fg:#fff;--accent-soft:#efefed;--player-bg:#1a1a1a;--player-text:#fff;--player-text2:rgba(255,255,255,.5);--player-surface:rgba(255,255,255,.08);--player-border:rgba(255,255,255,.1);--star-on:#f0a500;--fav-on:#e05555;--progress-track:rgba(255,255,255,.15);--progress-fill:#fff;--scrollbar:#ddd;--scrollbar-hover:#bbb;--shadow:rgba(0,0,0,.12);--shadow-deep:rgba(0,0,0,.5)}
 [data-theme="midnight"]{--bg:#0c0c14;--surface:#141420;--surface2:#1c1c2c;--border:#252535;--text1:#e8e8f8;--text2:#6870a0;--text3:#383858;--accent:#7b78ff;--accent-fg:#fff;--accent-soft:#1e1e38;--player-bg:#0a0a12;--player-text:#e8e8f8;--player-text2:rgba(232,232,248,.5);--player-surface:rgba(255,255,255,.06);--player-border:rgba(255,255,255,.08);--star-on:#f0c040;--fav-on:#ff6060;--progress-track:rgba(255,255,255,.1);--progress-fill:#7b78ff;--scrollbar:#252535;--scrollbar-hover:#353558;--shadow:rgba(0,0,0,.4);--shadow-deep:rgba(0,0,0,.8)}
