@@ -463,7 +463,7 @@ function renderFavList(container) {
   container.appendChild(wrap);
 }
 
-/* ===== EXPLORE (online: YouTube + Audius) ===== */
+/* ===== EXPLORE (online catalog) ===== */
 const SEARCH_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>';
 const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 const NOTE_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>';
@@ -491,10 +491,10 @@ function ingestTrack(r) {
   return idx;
 }
 
-/* ---- source badge (local vs streaming) shown on cover art ---- */
+/* ---- source badge (local file vs online) shown on cover art ---- */
 const SRC_ICON_ONLINE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>';
 const SRC_ICON_LOCAL = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v9c0 1.1-.9 2-2 2h-6v2h2v2H8v-2h2v-2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>';
-const srcBadge = isOnline => `<div class="src-badge ${isOnline ? 'online' : 'local'}" title="${isOnline ? 'Streaming' : 'Archivo local'}">${isOnline ? SRC_ICON_ONLINE : SRC_ICON_LOCAL}</div>`;
+const srcBadge = isOnline => `<div class="src-badge ${isOnline ? 'online' : 'local'}" title="${isOnline ? 'En línea' : 'Archivo local'}">${isOnline ? SRC_ICON_ONLINE : SRC_ICON_LOCAL}</div>`;
 
 /* ---- library membership (added online items persist like local files) ---- */
 const LIB_KEY = 'zen-library-v1';

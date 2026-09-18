@@ -4,9 +4,9 @@
 
 # Zen Music Player
 
-**A desktop music player that treats your local folder and the whole online catalog as one library.**
+**A desktop music player for your local library, with an online catalog built in.**
 
-**Un reproductor de escritorio que trata tu carpeta local y el catálogo en línea como una sola biblioteca.**
+**Un reproductor de escritorio para tu biblioteca local, con un catálogo en línea integrado.**
 
 ![version](https://img.shields.io/badge/version-1.0.0-4C1D95)
 ![status](https://img.shields.io/badge/status-work%20in%20progress-F59E0B)
@@ -30,7 +30,7 @@
 
 ### ✨ What it does
 
-You keep your music in a folder. You also listen to things you don't own. Most players make you choose: a local library manager that ignores the internet, or a streaming app that ignores your files.
+You keep your music in a folder. You also listen to things you have not got around to downloading. Most players make you choose: a local library manager that ignores the internet, or an online app that ignores your files.
 
 Zen Music Player puts both in the same grid. **Open a folder** and your files are scanned, grouped by artist and album, and drawn with their embedded cover art. Switch to **Explorar** and you search real artists, albums and charts — the same cards, the same detail panel, the same queue. Anything you like from there can be **added to your library**, where it sits next to your local files and survives restarts.
 
@@ -102,7 +102,7 @@ Output lands in `out/`. `forge.config.js` ships `bin/` as an extra resource, so 
 | **Right click** | Menu: play, queue, favorite, rate 1–5 stars, copy title or artist |
 | **♥ on a card** | Toggles the whole album or artist as favorite |
 
-**Explore.** The *Explorar* tab opens on the current charts. Type a query and you get tracks, albums and artists; click an album or artist to drill into its tracklist. The **＋** button on a row adds that track to your library, and **✓** means it is already there. Added tracks survive restarts and carry a small cloud badge, so you always know what is streamed and what is on disk.
+**Explore.** The *Explorar* tab opens on the current charts. Type a query and you get tracks, albums and artists; click an album or artist to drill into its tracklist. The **＋** button on a row adds that track to your library, and **✓** means it is already there. Added tracks survive restarts and carry a small cloud badge, so you always know what plays from the internet and what is on disk.
 
 **Play.** The player sits on the right as a card: cover, title, progress bar, transport, volume and the queue. Drag the handle on its left edge to resize it, or collapse it with the chevron — it becomes a horizontal mini-bar at the bottom with its own controls, volume, star rating and favorite button.
 
@@ -119,7 +119,7 @@ The gear in the top bar holds everything that changes how the library looks:
 | **Tamaño de cuadrícula** | 120–320 px | Card size in every grid |
 | **Panel de detalle** | `bottom` · `inline` | A panel docked at the bottom, or a MusicBee-style expansion inside the grid row |
 | **Tema** | 6 themes | `white`, `midnight`, `sand`, `sage`, `lavender`, `slate` |
-| **Calidad de streaming** | Alta · Media · Baja | Maps to a `yt-dlp` format selector: best available, ≤128 kbps, ≤64 kbps |
+| **Calidad de audio** | Alta · Media · Baja | Maps to a `yt-dlp` format selector: best available, ≤128 kbps, ≤64 kbps |
 
 Inside the detail panel there are four track layouts — **list**, **columns**, **table** and **compact** — plus a slider for thumbnail size (24–64 px).
 
@@ -129,7 +129,7 @@ Three files do the work: `src/main.js` (Electron main process), `src/preload.js`
 
 **Local files.** The main process walks the folder with `fs.readdirSync`, keeps the six audio extensions, and derives `album` from the parent directory and `artist` from the grandparent. Cover art is *not* read during the scan — that would stall on a large collection. Instead the renderer runs an `IntersectionObserver` that asks for a cover only when a card is about to scroll into view, and caches the result.
 
-**Metadata and audio come from different places.** This is the same split [Nuclear](https://nuclearplayer.com/) uses. Names, covers, tracklists and charts come from **Deezer's public API** — a real, complete catalog, free and without a key, but whose own audio is a 30-second preview. So the audio is resolved separately: the moment you press play, the app searches YouTube for `"artist title"` with `youtube-sr`, then runs `yt-dlp -g` to get a direct audio URL.
+**Metadata and audio come from different places.** Names, covers, tracklists and charts come from **Deezer's public API** — a real, complete catalog, free and without a key, but whose own audio is a 30-second preview. So the audio is resolved separately: the moment you press play, the app searches YouTube for `"artist title"` with `youtube-sr`, then runs `yt-dlp -g` to get a direct audio URL.
 
 **Resolution happens at play time, never up front.** Those URLs expire, so caching them in a library file would give you a library of dead links. Each track caches its URL for the session only, and if the `<audio>` element errors on an online track the player re-resolves once and retries — that single retry is what makes an expired URL invisible to you.
 
@@ -192,7 +192,7 @@ Released under the **[MIT](LICENSE)** license — use it, modify it and share it
 
 ### ✨ ¿Qué hace?
 
-Tienes tu música en una carpeta. También escuchas cosas que no tienes. Casi todos los reproductores te obligan a elegir: un gestor de biblioteca local que ignora internet, o una app de streaming que ignora tus archivos.
+Tienes tu música en una carpeta. También escuchas cosas que todavía no has descargado. Casi todos los reproductores te obligan a elegir: un gestor de biblioteca local que ignora internet, o una app en línea que ignora tus archivos.
 
 Zen Music Player pone las dos cosas en la misma cuadrícula. **Abres una carpeta** y tus archivos se escanean, se agrupan por artista y álbum y se dibujan con su carátula incrustada. Cambias a **Explorar** y buscas artistas, álbumes y charts reales — las mismas tarjetas, el mismo panel de detalle, la misma cola. Lo que te guste de ahí puede **añadirse a tu biblioteca**, donde queda junto a tus archivos locales y sobrevive a los reinicios.
 
@@ -264,7 +264,7 @@ El resultado queda en `out/`. `forge.config.js` incluye `bin/` como recurso extr
 | **Clic derecho** | Menú: reproducir, encolar, favorito, calificar de 1 a 5 estrellas, copiar título o artista |
 | **♥ en una tarjeta** | Marca o desmarca como favorito el álbum o artista completo |
 
-**Explora.** La pestaña *Explorar* abre con los charts del momento. Escribe una búsqueda y obtienes canciones, álbumes y artistas; haz clic en un álbum o artista para entrar a su tracklist. El botón **＋** de una fila agrega esa canción a tu biblioteca, y **✓** significa que ya está. Lo agregado sobrevive a los reinicios y lleva una pequeña insignia de nube, para que siempre sepas qué se transmite y qué está en disco.
+**Explora.** La pestaña *Explorar* abre con los charts del momento. Escribe una búsqueda y obtienes canciones, álbumes y artistas; haz clic en un álbum o artista para entrar a su tracklist. El botón **＋** de una fila agrega esa canción a tu biblioteca, y **✓** significa que ya está. Lo agregado sobrevive a los reinicios y lleva una pequeña insignia de nube, para que siempre sepas qué viene de internet y qué está en disco.
 
 **Reproduce.** El reproductor vive a la derecha como una tarjeta: carátula, título, barra de progreso, controles, volumen y la cola. Arrastra el tirador de su borde izquierdo para redimensionarlo, o pliégalo con la flecha — se convierte en una mini-barra horizontal abajo, con sus propios controles, volumen, estrellas y botón de favorito.
 
@@ -281,7 +281,7 @@ El engranaje de la barra superior guarda todo lo que cambia el aspecto de la bib
 | **Tamaño de cuadrícula** | 120–320 px | Tamaño de las tarjetas en todas las cuadrículas |
 | **Panel de detalle** | `bottom` · `inline` | Un panel anclado abajo, o una expansión estilo MusicBee dentro de la fila de la cuadrícula |
 | **Tema** | 6 temas | `white`, `midnight`, `sand`, `sage`, `lavender`, `slate` |
-| **Calidad de streaming** | Alta · Media · Baja | Se traduce a un selector de formato de `yt-dlp`: la mejor disponible, ≤128 kbps, ≤64 kbps |
+| **Calidad de audio** | Alta · Media · Baja | Se traduce a un selector de formato de `yt-dlp`: la mejor disponible, ≤128 kbps, ≤64 kbps |
 
 Dentro del panel de detalle hay cuatro disposiciones de pistas — **lista**, **columnas**, **tabla** y **compacta** — más un deslizador para el tamaño de las miniaturas (24–64 px).
 
@@ -291,7 +291,7 @@ Tres archivos hacen el trabajo: `src/main.js` (proceso principal de Electron), `
 
 **Archivos locales.** El proceso principal recorre la carpeta con `fs.readdirSync`, se queda con las seis extensiones de audio y deduce `album` del directorio padre y `artist` del abuelo. La carátula *no* se lee durante el escaneo — eso se atascaría con una colección grande. En vez de eso el renderer corre un `IntersectionObserver` que pide la carátula solo cuando la tarjeta está por entrar en pantalla, y cachea el resultado.
 
-**Los metadatos y el audio vienen de sitios distintos.** Es la misma separación que usa [Nuclear](https://nuclearplayer.com/). Los nombres, carátulas, tracklists y charts salen de la **API pública de Deezer** — un catálogo real y completo, gratuito y sin key, pero cuyo audio propio es un adelanto de 30 segundos. Así que el audio se resuelve aparte: en el momento en que pulsas play, la app busca en YouTube `"artista título"` con `youtube-sr` y luego ejecuta `yt-dlp -g` para obtener una URL de audio directa.
+**Los metadatos y el audio vienen de sitios distintos.** Los nombres, carátulas, tracklists y charts salen de la **API pública de Deezer** — un catálogo real y completo, gratuito y sin key, pero cuyo audio propio es un adelanto de 30 segundos. Así que el audio se resuelve aparte: en el momento en que pulsas play, la app busca en YouTube `"artista título"` con `youtube-sr` y luego ejecuta `yt-dlp -g` para obtener una URL de audio directa.
 
 **La resolución ocurre al reproducir, nunca por adelantado.** Esas URLs caducan, así que guardarlas en un archivo de biblioteca te daría una biblioteca de enlaces muertos. Cada pista cachea su URL solo durante la sesión y, si el elemento `<audio>` falla con una pista en línea, el reproductor la vuelve a resolver una vez y reintenta — ese único reintento es lo que hace que una URL caducada te resulte invisible.
 

@@ -99,8 +99,8 @@ ipcMain.handle('get-cover-art', async (_event, filePath) => {
 
 /* ===== MUSIC METADATA (Deezer) =====
    Deezer has a huge public catalog of real artists/albums (free, no API key).
-   Like Nuclear, we use it ONLY for metadata (names, covers, tracklists) and
-   resolve the actual audio from YouTube at play time. */
+   Used ONLY for metadata (names, covers, tracklists); the actual audio is
+   resolved separately at play time. */
 const DEEZER = 'https://api.deezer.com';
 async function deezer(pathQuery) {
   try {

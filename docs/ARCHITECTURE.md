@@ -197,7 +197,7 @@ playTrack(idx, newQueue, mode)
 
 **Race protection.** After the `await` that resolves a URL, `playTrack()` compares `currentIndex` with the `idx` it was called for and bails out if the user has since changed tracks.
 
-### Streaming quality
+### Audio quality
 
 `qualityFormat()` maps the setting to a `yt-dlp` format selector:
 
